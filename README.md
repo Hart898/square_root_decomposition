@@ -30,3 +30,10 @@ The exported names are `SqrtDecomposition`, `Operation`, `SUM`, `PRODUCT`, `MIN`
 * Out-of-range query indices are clamped to the valid range, matching list slicing — `query(-5, 100)` on a length-3 array is the same as `query(0, 3)`.
 * `update(index, value)` with `index == len(self)` appends. `block_size` is fixed at construction and never resized on append; a new trailing block is allocated when the append crosses a block boundary. Any index larger than `len(self)` raises `IndexError`.
 * Block indices are `index // block_size`, so `block_size` must be a positive integer; anything else raises `ValueError` at construction.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+

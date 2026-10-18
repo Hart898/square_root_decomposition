@@ -1,6 +1,6 @@
 [project]
 name = "square-root-decomposition"
-version = "0.1.0"
+version = "0.1.1"
 description = "A block-based array decomposition supporting point updates and range aggregate queries in O(sqrt n) without preprocessing overhead constraints."
 requires-python = ">=3.10"
 dependencies = []
